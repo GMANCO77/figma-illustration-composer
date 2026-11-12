@@ -1,0 +1,282 @@
+[
+  {
+    "asset": "book",
+    "detail": "S",
+    "role": "main",
+    "exists": true,
+    "vectors": 51
+  },
+  {
+    "asset": "book",
+    "detail": "S",
+    "role": "background",
+    "exists": true,
+    "vectors": 54
+  },
+  {
+    "asset": "book",
+    "detail": "L",
+    "role": "main",
+    "exists": true,
+    "vectors": 53
+  },
+  {
+    "asset": "book",
+    "detail": "L",
+    "role": "background",
+    "exists": true,
+    "vectors": 53
+  },
+  {
+    "asset": "phone",
+    "detail": "S",
+    "role": "main",
+    "exists": true,
+    "vectors": 96
+  },
+  {
+    "asset": "phone",
+    "detail": "S",
+    "role": "background",
+    "exists": true,
+    "vectors": 155
+  },
+  {
+    "asset": "phone",
+    "detail": "L",
+    "role": "main",
+    "exists": true,
+    "vectors": 155
+  },
+  {
+    "asset": "phone",
+    "detail": "L",
+    "role": "background",
+    "exists": true,
+    "vectors": 155
+  },
+  {
+    "asset": "puzzle",
+    "detail": "S",
+    "role": "main",
+    "exists": true,
+    "vectors": 57
+  },
+  {
+    "asset": "puzzle",
+    "detail": "S",
+    "role": "background",
+    "exists": true,
+    "vectors": 57
+  },
+  {
+    "asset": "puzzle",
+    "detail": "L",
+    "role": "main",
+    "exists": true,
+    "vectors": 57
+  },
+  {
+    "asset": "puzzle",
+    "detail": "L",
+    "role": "background",
+    "exists": true,
+    "vectors": 57
+  },
+  {
+    "asset": "coin",
+    "detail": "S",
+    "role": "main",
+    "exists": true,
+    "vectors": 131
+  },
+  {
+    "asset": "coin",
+    "detail": "S",
+    "role": "background",
+    "exists": true,
+    "vectors": 137
+  },
+  {
+    "asset": "coin",
+    "detail": "L",
+    "role": "main",
+    "exists": true,
+    "vectors": 137
+  },
+  {
+    "asset": "coin",
+    "detail": "L",
+    "role": "background",
+    "exists": true,
+    "vectors": 137
+  },
+  {
+    "asset": "headphones",
+    "detail": "S",
+    "role": "main",
+    "exists": true,
+    "vectors": 79
+  },
+  {
+    "asset": "headphones",
+    "detail": "S",
+    "role": "background",
+    "exists": true,
+    "vectors": 84
+  },
+  {
+    "asset": "headphones",
+    "detail": "L",
+    "role": "main",
+    "exists": true,
+    "vectors": 84
+  },
+  {
+    "asset": "headphones",
+    "detail": "L",
+    "role": "background",
+    "exists": true,
+    "vectors": 84
+  },
+  {
+    "asset": "lamp",
+    "detail": "S",
+    "role": "main",
+    "exists": true,
+    "vectors": 27
+  },
+  {
+    "asset": "lamp",
+    "detail": "S",
+    "role": "background",
+    "exists": true,
+    "vectors": 27
+  },
+  {
+    "asset": "lamp",
+    "detail": "L",
+    "role": "main",
+    "exists": true,
+    "vectors": 27
+  },
+  {
+    "asset": "lamp",
+    "detail": "L",
+    "role": "background",
+    "exists": true,
+    "vectors": 27
+  },
+  {
+    "asset": "wallet",
+    "detail": "S",
+    "role": "main",
+    "exists": true,
+    "vectors": 83
+  },
+  {
+    "asset": "wallet",
+    "detail": "S",
+    "role": "background",
+    "exists": true,
+    "vectors": 86
+  },
+  {
+    "asset": "wallet",
+    "detail": "L",
+    "role": "main",
+    "exists": true,
+    "vectors": 86
+  },
+  {
+    "asset": "wallet",
+    "detail": "L",
+    "role": "background",
+    "exists": true,
+    "vectors": 86
+  },
+  {
+    "asset": "folder",
+    "detail": "S",
+    "role": "main",
+    "exists": true,
+    "vectors": 20
+  },
+  {
+    "asset": "folder",
+    "detail": "S",
+    "role": "background",
+    "exists": true,
+    "vectors": 22
+  },
+  {
+    "asset": "folder",
+    "detail": "L",
+    "role": "main",
+    "exists": true,
+    "vectors": 22
+  },
+  {
+    "asset": "folder",
+    "detail": "L",
+    "role": "background",
+    "exists": true,
+    "vectors": 22
+  },
+  {
+    "asset": "pen",
+    "detail": "S",
+    "role": "main",
+    "exists": true,
+    "vectors": 24
+  },
+  {
+    "asset": "pen",
+    "detail": "S",
+    "role": "background",
+    "exists": true,
+    "vectors": 24
+  },
+  {
+    "asset": "pen",
+    "detail": "L",
+    "role": "main",
+    "exists": true,
+    "vectors": 24
+  },
+  {
+    "asset": "pen",
+    "detail": "L",
+    "role": "background",
+    "exists": true,
+    "vectors": 24
+  },
+  {
+    "asset": "flowers",
+    "detail": "S",
+    "role": "main",
+    "exists": true,
+    "vectors": 133
+  },
+  {
+    "asset": "flowers",
+    "detail": "S",
+    "role": "background",
+    "exists": true,
+    "vectors": 133
+  },
+  {
+    "asset": "flowers",
+    "detail": "L",
+    "role": "main",
+    "exists": true,
+    "vectors": 133
+  },
+  {
+    "asset": "flowers",
+    "detail": "L",
+    "role": "background",
+    "exists": true,
+    "vectors": 133
+  }
+]

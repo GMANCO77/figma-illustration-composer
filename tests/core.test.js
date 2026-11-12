@@ -1,0 +1,13 @@
+const test=require('node:test'); const assert=require('node:assert/strict'); const C=require('../src/core.js');
+const assets=[{id:'book',name:'Книга',tags:['обучение','знания']},{id:'puzzle',name:'Пазлы',tags:['команда','сотрудничество']},{id:'coin',name:'Монета',tags:['финансы','деньги']}];
+test('selects existing objects by explicit names',()=>assert.deepEqual(C.resolveTheme('книга, монета',assets),['book','coin']));
+test('unknown theme returns empty selection',()=>assert.deepEqual(C.resolveTheme('космический корабль',assets),[]));
+test('semantic tags select known objects',()=>assert.deepEqual(C.resolveTheme('обучение',assets),['book']));
+test('rejects unknown AI IDs',()=>assert.throws(()=>C.validateIds(['invented'],assets),/каталог/));
+test('limits selections to six unique objects',()=>assert.throws(()=>C.validateIds(Array.from({length:7},(_,i)=>''+i),Array.from({length:7},(_,i)=>({id:''+i}))),/шести/));
+test('layouts preserve one common scale and visible bounds',()=>{for(const [w,h] of [[1080,1080],[1200,675],[1080,1920]])for(let v=0;v<3;v++){const p=C.planLayout([{id:'a',w:1446,h:977},{id:'b',w:287,h:188}],w,h,v);assert.equal(p[0].scale,p[1].scale);for(const n of p){assert.ok(n.x>=0&&n.y>=0);assert.ok(n.x+n.w*n.scale<=w+1);assert.ok(n.y+n.h*n.scale<=h+1);}}});
+test('rejects invalid canvas sizes',()=>assert.throws(()=>C.planLayout([{id:'a',w:100,h:100}],0,675,0),/формат/));
+test('palette import validates every role',()=>{assert.throws(()=>C.parsePalette('{}'),/палитр/);assert.throws(()=>C.parsePalette(JSON.stringify({name:'X',colors:Array(8).fill('red')})),/HEX/);assert.equal(C.parsePalette(JSON.stringify({name:'X',colors:Array(8).fill('#ffffff')})).colors.length,8);});
+test('color mapping preserves opacity and maps known role colors',()=>{const p={type:'SOLID',color:{r:1,g:0,b:0},opacity:.4};const x=C.recolorPaint(p,['#ff0000'],['#00ff00']);assert.equal(x.opacity,.4);assert.deepEqual(x.color,{r:0,g:1,b:0});assert.equal(p.color.r,1);});
+test('unmapped colors remain unchanged',()=>{const p={type:'SOLID',color:{r:.2,g:.3,b:.4}};assert.deepEqual(C.recolorPaint(p,['#ff0000'],['#00ff00']),p);});
+test('three variants differ for one to six objects in every format',()=>{for(const [w,h] of [[1200,675],[1080,1080],[1080,1920]])for(let n=1;n<=6;n++){const e=Array.from({length:n},(_,i)=>({id:''+i,w:300+i*30,h:200+i*10}));const p=[0,1,2].map(v=>JSON.stringify(C.planLayout(e,w,h,v)));assert.equal(new Set(p).size,3);}});

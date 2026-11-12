@@ -1,0 +1,422 @@
+[
+  {
+    "id": "book",
+    "size": "S",
+    "role": "main",
+    "colors": {
+      "#ffffff": 13,
+      "#181817": 9,
+      "#f9a3aa": 3,
+      "#f9ecb0": 26
+    }
+  },
+  {
+    "id": "book",
+    "size": "S",
+    "role": "background",
+    "colors": {
+      "#d7cdf5": 42,
+      "#7864d7": 12
+    }
+  },
+  {
+    "id": "book",
+    "size": "L",
+    "role": "main",
+    "colors": {
+      "#181817": 12,
+      "#f9a3aa": 3,
+      "#ffe3e1": 14,
+      "#f9ecb0": 12,
+      "#ffffff": 12
+    }
+  },
+  {
+    "id": "book",
+    "size": "L",
+    "role": "background",
+    "colors": {
+      "#7864d7": 12,
+      "#d7cdf5": 41
+    }
+  },
+  {
+    "id": "phone",
+    "size": "S",
+    "role": "main",
+    "colors": {
+      "#181817": 56,
+      "#ffffff": 4,
+      "#f9ecb0": 1,
+      "#7864d7": 34,
+      "#d7cdf5": 1
+    }
+  },
+  {
+    "id": "phone",
+    "size": "S",
+    "role": "background",
+    "colors": {
+      "#7864d7": 93,
+      "#d7cdf5": 62
+    }
+  },
+  {
+    "id": "phone",
+    "size": "L",
+    "role": "main",
+    "colors": {
+      "#181817": 59,
+      "#ffffff": 5,
+      "#f9ecb0": 7,
+      "#d7cdf5": 50,
+      "#7864d7": 34
+    }
+  },
+  {
+    "id": "phone",
+    "size": "L",
+    "role": "background",
+    "colors": {
+      "#7864d7": 93,
+      "#d7cdf5": 62
+    }
+  },
+  {
+    "id": "puzzle",
+    "size": "S",
+    "role": "main",
+    "colors": {
+      "#181817": 22,
+      "#f9ecb0": 2,
+      "#ffffff": 26,
+      "#f9a3aa": 4,
+      "#d7cdf5": 3
+    }
+  },
+  {
+    "id": "puzzle",
+    "size": "S",
+    "role": "background",
+    "colors": {
+      "#7864d7": 22,
+      "#d7cdf5": 35
+    }
+  },
+  {
+    "id": "puzzle",
+    "size": "L",
+    "role": "main",
+    "colors": {
+      "#181817": 22,
+      "#f9ecb0": 2,
+      "#ffffff": 29,
+      "#f9a3aa": 4
+    }
+  },
+  {
+    "id": "puzzle",
+    "size": "L",
+    "role": "background",
+    "colors": {
+      "#7864d7": 22,
+      "#d7cdf5": 35
+    }
+  },
+  {
+    "id": "coin",
+    "size": "S",
+    "role": "main",
+    "colors": {
+      "#ffffff": 13,
+      "#f9ecb0": 24,
+      "#181817": 93,
+      "#171409": 1,
+      "#d9d9d9": 1
+    }
+  },
+  {
+    "id": "coin",
+    "size": "S",
+    "role": "background",
+    "colors": {
+      "#d7cdf5": 38,
+      "#7864d7": 98,
+      "#171409": 1,
+      "#d9d9d9": 1
+    }
+  },
+  {
+    "id": "coin",
+    "size": "L",
+    "role": "main",
+    "colors": {
+      "#ffffff": 14,
+      "#f9ecb0": 24,
+      "#181817": 98,
+      "#171409": 1,
+      "#d9d9d9": 1
+    }
+  },
+  {
+    "id": "coin",
+    "size": "L",
+    "role": "background",
+    "colors": {
+      "#d7cdf5": 38,
+      "#7864d7": 98,
+      "#171409": 1,
+      "#d9d9d9": 1
+    }
+  },
+  {
+    "id": "headphones",
+    "size": "S",
+    "role": "main",
+    "colors": {
+      "#181817": 19,
+      "#ffffff": 13,
+      "#d7cdf5": 47
+    }
+  },
+  {
+    "id": "headphones",
+    "size": "S",
+    "role": "background",
+    "colors": {
+      "#7864d7": 20,
+      "#d7cdf5": 64
+    }
+  },
+  {
+    "id": "headphones",
+    "size": "L",
+    "role": "main",
+    "colors": {
+      "#181817": 21,
+      "#ffffff": 13,
+      "#f9ecb0": 3,
+      "#d7cdf5": 47
+    }
+  },
+  {
+    "id": "headphones",
+    "size": "L",
+    "role": "background",
+    "colors": {
+      "#7864d7": 20,
+      "#d7cdf5": 64
+    }
+  },
+  {
+    "id": "lamp",
+    "size": "S",
+    "role": "main",
+    "colors": {
+      "#181817": 4,
+      "#ffffff": 10,
+      "#d7cdf5": 6,
+      "#f9ecb0": 5,
+      "#f9a3aa": 2
+    }
+  },
+  {
+    "id": "lamp",
+    "size": "S",
+    "role": "background",
+    "colors": {
+      "#7864d7": 4,
+      "#d7cdf5": 23
+    }
+  },
+  {
+    "id": "lamp",
+    "size": "L",
+    "role": "main",
+    "colors": {
+      "#181817": 4,
+      "#ffffff": 10,
+      "#d7cdf5": 6,
+      "#f9ecb0": 5,
+      "#f9a3aa": 2
+    }
+  },
+  {
+    "id": "lamp",
+    "size": "L",
+    "role": "background",
+    "colors": {
+      "#7864d7": 4,
+      "#d7cdf5": 23
+    }
+  },
+  {
+    "id": "wallet",
+    "size": "S",
+    "role": "main",
+    "colors": {
+      "#d7cdf5": 16,
+      "#181817": 54,
+      "#f9ecb0": 8,
+      "#ffffff": 5
+    }
+  },
+  {
+    "id": "wallet",
+    "size": "S",
+    "role": "background",
+    "colors": {
+      "#d7cdf5": 31,
+      "#7864d7": 55
+    }
+  },
+  {
+    "id": "wallet",
+    "size": "L",
+    "role": "main",
+    "colors": {
+      "#d7cdf5": 16,
+      "#181817": 55,
+      "#f9ecb0": 10,
+      "#ffffff": 5
+    }
+  },
+  {
+    "id": "wallet",
+    "size": "L",
+    "role": "background",
+    "colors": {
+      "#d7cdf5": 31,
+      "#7864d7": 55
+    }
+  },
+  {
+    "id": "folder",
+    "size": "S",
+    "role": "main",
+    "colors": {
+      "#f9ecb0": 11,
+      "#181817": 3,
+      "#ffffff": 6
+    }
+  },
+  {
+    "id": "folder",
+    "size": "S",
+    "role": "background",
+    "colors": {
+      "#d7cdf5": 18,
+      "#7864d7": 4
+    }
+  },
+  {
+    "id": "folder",
+    "size": "L",
+    "role": "main",
+    "colors": {
+      "#f9ecb0": 11,
+      "#181817": 4,
+      "#ffffff": 6,
+      "#f9a3aa": 1
+    }
+  },
+  {
+    "id": "folder",
+    "size": "L",
+    "role": "background",
+    "colors": {
+      "#d7cdf5": 18,
+      "#7864d7": 4
+    }
+  },
+  {
+    "id": "pen",
+    "size": "S",
+    "role": "main",
+    "colors": {
+      "#181817": 7,
+      "#ffffff": 16,
+      "#f9a3aa": 1
+    }
+  },
+  {
+    "id": "pen",
+    "size": "S",
+    "role": "background",
+    "colors": {
+      "#7864d7": 7,
+      "#d7cdf5": 17
+    }
+  },
+  {
+    "id": "pen",
+    "size": "L",
+    "role": "main",
+    "colors": {
+      "#181817": 7,
+      "#d7cdf5": 1,
+      "#ffffff": 14,
+      "#f9a3aa": 1,
+      "#f9ecb0": 1
+    }
+  },
+  {
+    "id": "pen",
+    "size": "L",
+    "role": "background",
+    "colors": {
+      "#7864d7": 7,
+      "#d7cdf5": 17
+    }
+  },
+  {
+    "id": "flowers",
+    "size": "S",
+    "role": "main",
+    "colors": {
+      "#181817": 26,
+      "#171714": 1,
+      "#eee2f6": 3,
+      "#ffffff": 34,
+      "#f9ecb0": 30,
+      "#aa9bf0": 18,
+      "#f9a3aa": 23
+    }
+  },
+  {
+    "id": "flowers",
+    "size": "S",
+    "role": "background",
+    "colors": {
+      "#7864d7": 26,
+      "#171714": 1,
+      "#eee2f6": 3,
+      "#d7cdf5": 105
+    }
+  },
+  {
+    "id": "flowers",
+    "size": "L",
+    "role": "main",
+    "colors": {
+      "#181817": 26,
+      "#171714": 1,
+      "#eee2f6": 3,
+      "#ffffff": 34,
+      "#f9ecb0": 30,
+      "#aa9bf0": 18,
+      "#f9a3aa": 23
+    }
+  },
+  {
+    "id": "flowers",
+    "size": "L",
+    "role": "background",
+    "colors": {
+      "#7864d7": 26,
+      "#171714": 1,
+      "#eee2f6": 3,
+      "#d7cdf5": 105
+    }
+  }
+]

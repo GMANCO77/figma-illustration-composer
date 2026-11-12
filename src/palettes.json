@@ -1,0 +1,41 @@
+[
+  {
+    "name": "Лаванда",
+    "colors": [
+      "#d7cdf5",
+      "#aa9bf0",
+      "#7864d7",
+      "#f9ecb0",
+      "#f9a3aa",
+      "#ffe3e1",
+      "#181817",
+      "#ffffff"
+    ]
+  },
+  {
+    "name": "Персик",
+    "colors": [
+      "#fdd7b9",
+      "#fac896",
+      "#d27532",
+      "#f9ecb0",
+      "#80dada",
+      "#beebeb",
+      "#181817",
+      "#ffffff"
+    ]
+  },
+  {
+    "name": "Мята",
+    "colors": [
+      "#beebeb",
+      "#80dada",
+      "#5abebe",
+      "#ffd4f2",
+      "#6d7bfc",
+      "#b6c6fe",
+      "#181817",
+      "#ffffff"
+    ]
+  }
+]
