@@ -27,14 +27,14 @@ const nounPatterns={
  headphones:/^(?:наушник(?:и|а|у|ом|е|ов|ам|ами|ах)?|headphones?)$/u,
  lamp:/^(?:ламп(?:а|ы|у|е|ой|ою|ам|ами|ах)?|lamps?)$/u,
  wallet:/^(?:кошел(?:ек|ьк(?:а|у|ом|е|и|ов|ам|ами|ах))|wallets?)$/u,
- folder:/^(?:папк(?:а|и|у|е|ой|ою|ам|ами|ах)?|folders?)$/u,
- pen:/^(?:ручк(?:а|и|у|е|ой|ою|ам|ами|ах)?|pens?)$/u,
- flowers:/^(?:цвет(?:ы|ок|ка|ку|ком|ке|ков|ам|ами|ах)|букет(?:ы|а|у|ом|е|ов|ам|ами|ах)?|flowers?)$/u,
+ folder:/^(?:папк(?:а|и|у|е|ой|ою|ам|ами|ах)?|папок|folders?)$/u,
+ pen:/^(?:ручк(?:а|и|у|е|ой|ою|ам|ами|ах)?|ручек|pens?)$/u,
+ flowers:/^(?:цвет(?:ы|ок|ка|ку|ком|ке|ков|ов|ам|ами|ах)|букет(?:ы|а|у|ом|е|ов|ам|ами|ах)?|flowers?)$/u,
 };
 const isObject=(word,a)=>nounPatterns[a.id]?.test(word)??matches(word,a.aliases);
 function exclusionClauses(text){
- const q=normalize(text),result=[];
- const rx=/(?:^|[\s,(])(?:без|кроме|исключая|исключить|никаких|никакой|никакого|не\s+(?:(?:добавляй(?:те)?|нужен|нужна|нужны|используй(?:те)?)\s+)?)([^.!?;]+)/gu;
+ const q=normalize(text).replace(/не\s+только\s+/gu,''),result=[];
+ const rx=/(?:^|[\s,(])(?:без|кроме|исключая|исключить|никаких|никакой|никакого|не(?:\s+(?:добавляй(?:те)?|нужен|нужна|нужны|используй(?:те)?))?)\s+([^.!?;]+)/gu;
  for(const m of q.matchAll(rx)){const clause=m[1].split(/(?:,?\s+)(?:а|но|зато|однако|с|со|добавь(?:те)?|вместо)\s+/u)[0];result.push(clause);}
  return result;
 }
@@ -108,4 +108,3 @@ export class History{
  undo(){if(this.canUndo)this.index--;return structuredClone(this.items[this.index]);}
  redo(){if(this.canRedo)this.index++;return structuredClone(this.items[this.index]);}
 }
-

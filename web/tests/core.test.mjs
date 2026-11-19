@@ -21,6 +21,9 @@ test('empty input never chooses random objects',()=>assert.equal(resolveInput(' 
 test('plain negation excludes a named object and preserves the positive alternative',()=>{const r=resolveInput('Не телефон, а книга','idea');assert.ok(!r.ids.includes('phone'));assert.ok(r.ids.includes('book'));});
 test('object list may include a valid exclusion clause',()=>{const r=resolveInput('книга без телефона','objects');assert.deepEqual(r.ids,['book']);assert.deepEqual(r.unknown,[]);});
 test('concrete names do not silently match unrelated English compounds or adjectives',()=>{assert.deepEqual(resolveInput('bookcase','objects').ids,[]);assert.ok(resolveInput('цветной фон','objects').unknown.length>0);assert.deepEqual(resolveInput('цветной фон','objects').ids,[]);});
+test('negative prefix must be a separate word',()=>{assert.ok(resolveInput('Безопасность телефона','idea').ids.includes('phone'));});
+test('genitive plural exclusions and names are recognized',()=>{assert.ok(!resolveInput('Рост без цветов','idea').ids.includes('flowers'));const r=resolveInput('папок, ручек, цветов','objects');assert.deepEqual(r.ids,['folder','pen','flowers']);assert.deepEqual(r.unknown,[]);});
+test('not only construction does not exclude a positive object',()=>{const r=resolveInput('Не только телефон, но и книга','idea');assert.ok(r.ids.includes('phone'));assert.ok(r.ids.includes('book'));});
 test('palette validates all eight semantic slots',()=>{
  const p=parsePalette(JSON.stringify({name:'Своя',colors:Array(8).fill('#ABCDEF')})); assert.equal(p.colors[0],'#abcdef');
  assert.throws(()=>parsePalette('{"name":"Bad","colors":["red"]}'));
@@ -51,4 +54,3 @@ test('history restores exact snapshots and truncates redo after a new edit',()=>
  const a=project(), h=new History(a);const b=structuredClone(a);b.layers[0].x=500;h.push(b);assert.equal(h.undo().layers[0].x,100);assert.equal(h.redo().layers[0].x,500);h.undo();const c=structuredClone(a);c.title='Новая';h.push(c);assert.equal(h.canRedo,false);assert.equal(h.undo().title,a.title);
 });
 test('catalog retains ten original semantic objects',()=>assert.equal(CATALOG.length,10));
-
