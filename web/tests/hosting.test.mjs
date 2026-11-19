@@ -1,0 +1,14 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {apiEndpoint} from '../src/api-client.mjs';
+import {normalizeApiBase} from '../scripts/config.mjs';
+import {applyCors} from '../server/cors.mjs';
+
+test('GitHub project paths keep relative API URLs when no separate server is configured',()=>assert.equal(apiEndpoint('status','','https://gmanco77.github.io/figma-illustration-composer/'),'https://gmanco77.github.io/figma-illustration-composer/api/status'));
+test('GitHub frontend can address the configured server without changing the project path',()=>assert.equal(apiEndpoint('resolve','https://sobrano-illustration-studio.vercel.app','https://gmanco77.github.io/figma-illustration-composer/'),'https://sobrano-illustration-studio.vercel.app/api/resolve'));
+test('public configuration accepts only a plain HTTPS origin without credentials or parameters',()=>{assert.equal(normalizeApiBase('https://example.com/'),'https://example.com');for(const v of ['http://example.com','https://user:secret@example.com','https://example.com/?key=secret','https://example.com/path','javascript:alert(1)'])assert.throws(()=>normalizeApiBase(v));});
+function response(){return {headers:{},statusCode:200,body:null,setHeader(k,v){this.headers[k]=v;},status(s){this.statusCode=s;return this;},json(body){this.body=body;return this;},end(){this.ended=true;return this;}};}
+test('approved GitHub origin receives exact CORS headers',()=>{const res=response();assert.equal(applyCors({method:'POST',headers:{origin:'https://gmanco77.github.io',host:'sobrano-illustration-studio.vercel.app'}},res,'POST'),false);assert.equal(res.headers['Access-Control-Allow-Origin'],'https://gmanco77.github.io');assert.equal(res.headers.Vary,'Origin');});
+test('JSON preflight is handled without calling the provider',()=>{const res=response();assert.equal(applyCors({method:'OPTIONS',headers:{origin:'https://gmanco77.github.io',host:'sobrano-illustration-studio.vercel.app'}},res,'POST'),true);assert.equal(res.statusCode,204);assert.equal(res.headers['Access-Control-Allow-Headers'],'Content-Type');assert.ok(res.ended);});
+test('unapproved and deceptively similar origins are denied without CORS access',()=>{for(const origin of ['https://evil.example','https://gmanco77.github.io.evil.example','https://gmanco77.github.io/path']){const res=response();assert.equal(applyCors({method:'POST',headers:{origin,host:'sobrano-illustration-studio.vercel.app'}},res,'POST'),true);assert.equal(res.statusCode,403);assert.equal(res.headers['Access-Control-Allow-Origin'],undefined);}});
+test('existing same-origin and server requests remain supported',()=>{for(const origin of [undefined,'https://sobrano-illustration-studio.vercel.app']){const res=response();assert.equal(applyCors({method:'GET',headers:{origin,host:'sobrano-illustration-studio.vercel.app'}},res,'GET'),false);}});

@@ -1,6 +1,8 @@
 import {CATALOG,PALETTES,FORMATS,History,resolveInput,planLayout,parsePalette,validateProject,normalize} from './core.mjs';
 import {loadAssets,templates,svgEl,dimensions,makeScene,objectNode,transform,exportSvg,download} from './svg.mjs';
 import {icon,hydrateIcons} from './icons.mjs';
+import {apiEndpoint} from './api-client.mjs';
+import {API_BASE} from './site-config.mjs';
 
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
 hydrateIcons();
@@ -135,7 +137,7 @@ $('#compose-form').addEventListener('submit',async event=>{
  try{
   if(mode==='idea'&&$('#use-ai').checked&&aiAvailable){
    const timeout=setTimeout(()=>controller.abort(),35000);
-   try{const response=await fetch('./api/resolve',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({text}),signal:controller.signal});const data=await response.json();if(!response.ok)throw Error(data.error||'Сервис подбора временно недоступен');result=data;}finally{clearTimeout(timeout);}
+   try{const response=await fetch(apiEndpoint('resolve',API_BASE),{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({text}),signal:controller.signal});const data=await response.json();if(!response.ok)throw Error(data.error||'Сервис подбора временно недоступен');result=data;}finally{clearTimeout(timeout);}
   }else result=resolveInput(text,mode);
   if(version!==requestVersion)return;
   if(result.unknown?.length)return message(`Нет в библиотеке: ${result.unknown.join(', ')}. Уточните список — композицию пока не изменили.`,true);
@@ -187,7 +189,7 @@ for(const id of ['help','help-done','close-help'])$('#'+id).addEventListener('cl
 $('#help-dialog').addEventListener('click',e=>{if(e.target===$('#help-dialog')){const r=e.target.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)e.target.close();}});
 new ResizeObserver(()=>{if(ready){fitArtboard();renderSelection();}}).observe($('#canvas-area'));
 async function checkAi(){
- try{const r=await fetch('./api/status',{signal:AbortSignal.timeout(8000)});const data=await r.json();aiAvailable=!!data.available;if(aiAvailable){$('#use-ai').checked=true;$('#ai-status').textContent='DeepSeek';}else $('#ai-status').textContent='По темам';}
+ try{const r=await fetch(apiEndpoint('status',API_BASE),{signal:AbortSignal.timeout(8000)});const data=await r.json();aiAvailable=!!data.available;if(aiAvailable){$('#use-ai').checked=true;$('#ai-status').textContent='DeepSeek';}else $('#ai-status').textContent='По темам';}
  catch{$('#ai-status').textContent='По темам';}
  $('#use-ai').disabled=!aiAvailable||mode==='objects';$('#use-ai').closest('label').title=aiAvailable?'Смысловой подбор через DeepSeek':'Умный подбор сейчас недоступен. Работает локальный подбор по темам библиотеки.';
 }
@@ -200,4 +202,3 @@ async function init(){
  }catch(error){const loading=$('#loading');loading.replaceChildren();const p=document.createElement('span');p.textContent=error.message+'. ';const b=document.createElement('button');b.className='error-retry';b.textContent='Повторить загрузку';b.addEventListener('click',()=>location.reload());loading.append(p,b);$('#build').disabled=true;$('#export').disabled=true;console.error('Library load failed:',error.message);}
 }
 init();
-
