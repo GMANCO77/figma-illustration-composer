@@ -1,4 +1,5 @@
 import {PALETTES,FORMATS} from './core.mjs';
+import {getWithRetry} from './network.mjs';
 const NS='http://www.w3.org/2000/svg';
 export const svgEl=(tag,attrs={})=>{const e=document.createElementNS(NS,tag);for(const [k,v] of Object.entries(attrs))e.setAttribute(k,String(v));return e;};
 export const templates=new Map();
@@ -22,7 +23,7 @@ export function prepareSvg(text,role){
 export async function loadAssets(manifest){
  const jobs=[];for(const item of manifest)for(const size of ['S','L'])for(const role of ['main','background'])jobs.push({id:item.id,size,role,...item.variants[size][role]});
  let cursor=0;
- await Promise.all(Array.from({length:6},async()=>{while(cursor<jobs.length){const a=jobs[cursor++],r=await fetch('./assets/'+a.file);if(!r.ok)throw Error('Не удалось загрузить '+a.file);templates.set(`${a.id}-${a.size}-${a.role}`,prepareSvg(await r.text(),a.role));}}));
+ await Promise.all(Array.from({length:6},async()=>{while(cursor<jobs.length){const a=jobs[cursor++],r=await getWithRetry('./assets/'+a.file);if(!r.ok)throw Error('Не удалось загрузить '+a.file);templates.set(`${a.id}-${a.size}-${a.role}`,prepareSvg(await r.text(),a.role));}}));
 }
 export function dimensions(layer,state,manifest){const a=manifest.find(a=>a.id===layer.assetId);return a.variants[state.size][layer.role];}
 export function recolor(root,palette){
@@ -55,4 +56,3 @@ export function exportSvg(state,manifest){
  return '<?xml version="1.0" encoding="UTF-8"?>\n'+new XMLSerializer().serializeToString(root);
 }
 export function download(content,name,type){const url=URL.createObjectURL(new Blob([content],{type})),a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),30000);}
-

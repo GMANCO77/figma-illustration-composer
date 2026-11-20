@@ -3,6 +3,7 @@ import {loadAssets,templates,svgEl,dimensions,makeScene,objectNode,transform,exp
 import {icon,hydrateIcons} from './icons.mjs';
 import {apiEndpoint} from './api-client.mjs';
 import {API_BASE} from './site-config.mjs';
+import {getWithRetry} from './network.mjs';
 
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
 hydrateIcons();
@@ -189,13 +190,13 @@ for(const id of ['help','help-done','close-help'])$('#'+id).addEventListener('cl
 $('#help-dialog').addEventListener('click',e=>{if(e.target===$('#help-dialog')){const r=e.target.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)e.target.close();}});
 new ResizeObserver(()=>{if(ready){fitArtboard();renderSelection();}}).observe($('#canvas-area'));
 async function checkAi(){
- try{const r=await fetch(apiEndpoint('status',API_BASE),{signal:AbortSignal.timeout(8000)});const data=await r.json();aiAvailable=!!data.available;if(aiAvailable){$('#use-ai').checked=true;$('#ai-status').textContent='DeepSeek';}else $('#ai-status').textContent='По темам';}
+ try{const r=await getWithRetry(apiEndpoint('status',API_BASE),{timeoutMs:8000});const data=await r.json();aiAvailable=!!data.available;if(aiAvailable){$('#use-ai').checked=true;$('#ai-status').textContent='DeepSeek';}else $('#ai-status').textContent='По темам';}
  catch{$('#ai-status').textContent='По темам';}
  $('#use-ai').disabled=!aiAvailable||mode==='objects';$('#use-ai').closest('label').title=aiAvailable?'Смысловой подбор через DeepSeek':'Умный подбор сейчас недоступен. Работает локальный подбор по темам библиотеки.';
 }
 async function init(){
  try{
-  const response=await fetch('./assets/manifest.json');if(!response.ok)throw Error('Не найдена библиотека векторов');const data=await response.json();manifest=Array.isArray(data)?data:data.assets;
+  const response=await getWithRetry('./assets/manifest.json');if(!response.ok)throw Error('Не найдена библиотека векторов');const data=await response.json();manifest=Array.isArray(data)?data:data.assets;
   if(!Array.isArray(manifest)||manifest.length!==10)throw Error('Библиотека загружена не полностью');
   await loadAssets(manifest);let restored=false;try{const saved=localStorage.getItem(STORAGE);if(saved){state=validateProject(saved);restored=true;}}catch{toast('Сохранённый проект не удалось открыть. Создана новая композиция.',true);}
   if(!restored)buildFromIds(['book','lamp','pen']);history=new History(state);ready=true;$('#loading').hidden=true;renderAll();persistence();checkAi();
