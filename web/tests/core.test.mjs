@@ -54,3 +54,4 @@ test('history restores exact snapshots and truncates redo after a new edit',()=>
  const a=project(), h=new History(a);const b=structuredClone(a);b.layers[0].x=500;h.push(b);assert.equal(h.undo().layers[0].x,100);assert.equal(h.redo().layers[0].x,500);h.undo();const c=structuredClone(a);c.title='Новая';h.push(c);assert.equal(h.canRedo,false);assert.equal(h.undo().title,a.title);
 });
 test('catalog retains ten original semantic objects',()=>assert.equal(CATALOG.length,10));
+test('an explicit list preserves every supported catalog item without silent truncation',()=>{const r=resolveInput(CATALOG.map(a=>a.name).join(', '),'objects');assert.deepEqual(r.ids,CATALOG.map(a=>a.id));assert.deepEqual(r.unknown,[]);});

@@ -142,7 +142,7 @@ $('#compose-form').addEventListener('submit',async event=>{
   if(version!==requestVersion)return;
   if(result.unknown?.length)return message(`Нет в библиотеке: ${result.unknown.join(', ')}. Уточните список — композицию пока не изменили.`,true);
   if(!result.ids?.length)return message(result.explanation||'Подходящих объектов нет. Уточните идею или выберите предметы вручную.',true);
-  if(!result.ids.every(id=>CATALOG.some(a=>a.id===id))||result.ids.length>6)throw Error('Получен некорректный подбор. Попробуйте ещё раз.');
+  if(!result.ids.every(id=>CATALOG.some(a=>a.id===id))||result.ids.length>(mode==='objects'?CATALOG.length:6))throw Error('Получен некорректный подбор. Попробуйте ещё раз.');
   buildFromIds(result.ids);commit({fromBuild:true});message(`${result.engine==='deepseek'?'DeepSeek: ':''}${result.explanation||'Объекты подобраны.'} ${result.ids.map(assetName).join(', ')}.`);
  }catch(error){if(version!==requestVersion)return;message(error.name==='AbortError'?'Подбор занял слишком много времени. Повторите или выключите умный подбор.':`${error.message}. Можно выключить умный подбор и выбрать тему или объекты.`,true);}
  finally{if(version===requestVersion){requestController=null;button.disabled=false;label.textContent='Собрать композицию';}}

@@ -55,7 +55,7 @@ export function resolveInput(text,mode='idea',catalog=CATALOG){
    .filter(a=>a.score>0&&!excluded.includes(a.id)).sort((a,b)=>b.score-a.score||a.index-b.index);
   ids.push(...ranked.slice(0,4).map(a=>a.id));
  }
- return {ids:ids.slice(0,6),unknown:[...new Set(unknown)],excluded,engine:'local',explanation:ids.length?'Подобрано по названиям и темам библиотеки.':'Подходящих объектов в библиотеке не найдено.'};
+ return {ids,unknown:[...new Set(unknown)],excluded,engine:'local',explanation:ids.length?'Подобрано по названиям и темам библиотеки.':'Подходящих объектов в библиотеке не найдено.'};
 }
 
 // Place the original shapes as a group. Every object receives one common scale.
